@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/",
             "index": "src/index.html",
-            "baseHref": "dist/",
+            "baseHref": "/ePlayer/dist/",
             "main": "src/main.ts",
             "polyfills": [
               "zone.js"
