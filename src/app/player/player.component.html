@@ -1,0 +1,57 @@
+<div class="footer">
+  <div class="container">
+    <div class="con-btn">
+      <a href="javascript:;" class="player-btn btn-prev" title="上一首"></a>
+      <a
+        href="javascript:;"
+        class="player-btn btn-play"
+        [ngClass]="{ 'btn-state-paused': yyyy }"
+        (click)="ok()"
+        title="暂停/继续"
+      ></a>
+      <a href="javascript:;" class="player-btn btn-next" title="下一首"></a>
+      <a
+        href="javascript:;"
+        (click)="switch()"
+        class="player-btn btn-order"
+        [ngClass]="btnClass"
+        title="循环控制"
+      ></a>
+    </div>
+    <!--class="con-btn"-->
+
+    <div class="vol">
+      <div class="quiet">
+        <a
+          href="javascript:;"
+          (click)="long()"
+          [ngClass]="{ 'btn-state-quiet': fde }"
+          class="player-btn btn-quiet"
+          title="静音"
+        ></a>
+      </div>
+      <div class="volume">
+        <div class="volume-box">
+          <div id="volume-progress" class="mkpgb-area">
+            <div class="mkpgb-bar"></div>
+            <div class="mkpgb-cur" style="width: 39.4444%"></div>
+            <div class="mkpgb-dot" style="left: 39.4444%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--class="footer"-->
+
+    <div class="progress">
+      <div class="progress-box">
+        <div id="music-progress" class="mkpgb-area mkpgb-locked">
+          <div class="mkpgb-bar"></div>
+          <div class="mkpgb-cur" style="width: 0%"></div>
+          <div class="mkpgb-dot dot-move" style="left: 0%"></div>
+        </div>
+      </div>
+    </div>
+    <!--class="progress"-->
+  </div>
+  <!--class="container"-->
+</div>

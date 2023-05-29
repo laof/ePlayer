@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background-image: linear-gradient(200deg, #7f7280, #000000);
+  overflow-y: hidden;
+  font-family: poppin, "PingFang SC", Tahoma, Arial, sans-serif;
+}
