@@ -89,6 +89,9 @@ export class PlayerComponent {
     });
 
     if (cccc && cccc.txt) {
+      const a = document.createElement('div');
+      a.innerHTML = cccc.txt;
+      // this.res.append(a);
       this.res.innerHTML = cccc.txt;
     }
   }
