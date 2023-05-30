@@ -1,0 +1,105 @@
+.dddd {
+  display: flex;
+  padding-top: 10px;
+}
+.list-num {
+  flex: 0 0 30px;
+}
+
+.list-num {
+  display: block;
+  flex: 0 0 40px;
+  text-align: center;
+  float: left;
+  overflow: hidden;
+}
+.list {
+  flex: 3;
+}
+
+.list-mobile-menu {
+  display: none;
+}
+.music-cover {
+  width: 186px;
+  height: 186px;
+  flex: 1;
+  position: relative;
+
+  img {
+    vertical-align: middle;
+    width: 186px;
+    height: 186px;
+    user-select: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 0;
+    width: 201px;
+    height: 180px;
+    background: url(../../assets/abc.png) 0 0 no-repeat;
+    pointer-events: none;
+  }
+}
+
+.item {
+  li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #bdbdbe;
+    color: rgba(225, 225, 225, 0.8);
+    font-size: 14px;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.1);
+    cursor: default;
+    position: relative;
+    display: flex;
+
+    &:not(.header) :hover {
+      color: white;
+    }
+  }
+}
+
+.music-name {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.music-album {
+  position: relative;
+  display: block;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 960px) {
+  .music-cover {
+    display: none;
+  }
+
+  .music-name {
+    flex: 0.8;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .item {
+    width: 90%;
+  }
+  .music-album {
+    width: 120px;
+  }
+}
+
+.auth-name {
+  padding-right: 12px;
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AudioService } from './services/audio.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'music';
+  constructor(private d: AudioService, private router: Router) {}
+
+  test(r: string) {
+    this.router.navigateByUrl(r);
+  }
 }

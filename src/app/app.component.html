@@ -27,35 +27,11 @@
 </div>
 <div class="logo">♫ ePlayer</div>
 <div class="main">
-  <div class="dddd">
-    <div class="list">
-      <ul class="menus">
-        <li>正在播放</li>
-        <li>播放列表</li>
-        <li>本地歌曲</li>
-      </ul>
-
-      <ul class="item">
-        <li class="header">
-          <span class="list-num"></span>
-          <span class="music-name">歌曲</span>
-          <span class="auth-name music-album">播放</span>
-          <span class="music-album">时长</span>
-        </li>
-        <li>
-          <span class="list-num">1</span>
-          <span class="music-name">test.mp3</span>
-          <span class="auth-name music-album">播放</span>
-          <span class="music-album">00:30</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="music-cover">
-      <img draggable="false" src="assets/download.png" />
-    </div>
-  </div>
-  <div #ref id="dfdafa">....</div>
+  <ul class="menus">
+    <li (click)="test('home')">正在播放</li>
+    <li (click)="test('list')">播放列表</li>
+    <li>本地歌曲</li>
+  </ul>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
 <app-player></app-player>

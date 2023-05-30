@@ -1,0 +1,129 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { DataService, Loop, LRC, Music } from './data.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AudioService {
+  private audio: HTMLAudioElement = new Audio();
+  private lrc: LRC[] = [];
+  private list: Music[] = [];
+  private timeline = -1;
+
+  private index = 0;
+
+  loop = Loop.None;
+
+  lrc$ = new BehaviorSubject(this.lrc);
+  list$ = new BehaviorSubject(this.list);
+  index$ = new BehaviorSubject(-1);
+  timeline$ = new BehaviorSubject(this.timeline);
+
+  constructor(private data: DataService) {
+    this.init();
+    this.data.list().subscribe((res) => {
+      this.list = res as Music[];
+      this.list$.next(this.list);
+      this.load(false);
+    });
+  }
+
+  init() {
+    this.audio.preload = 'auto';
+    this.audio.controls = true;
+    this.audio.currentTime = 20;
+    this.audio.ontimeupdate = () => this.ontimeupdate();
+    this.audio.addEventListener('loadedmetadata', () => {
+      const d = this.audio.duration;
+    });
+    this.audio.addEventListener('ended', () => {
+      const d = this.audio.duration;
+    });
+  }
+
+  private load(play = true) {
+    this.audio.pause();
+    const data = this.list[this.index];
+    if (!data) return;
+    this.audio.src = data.url;
+    this.loadLrc(data.lrc);
+    play && this.audio.play();
+  }
+
+  play() {
+    this.index$.next(this.index);
+    this.audio.play();
+  }
+
+  pause() {
+    this.index$.next(-1);
+    this.audio.pause();
+  }
+
+  prev() {
+    this.index--;
+    if (this.index < 0) {
+      this.index = 0;
+    } else {
+      this.index$.next(this.index);
+    }
+    this.load();
+  }
+
+  next() {
+    this.index++;
+    const max = this.list.length - 1;
+    if (this.index > max) {
+      this.index = max;
+    } else {
+      this.index$.next(this.index);
+    }
+    this.load();
+  }
+
+  ontimeupdate() {
+    const time = this.audio.currentTime;
+    const index = this.lrc.findIndex((obj, i) => {
+      const next = this.lrc[i + 1];
+      if (time >= obj.time && next && time < next.time) {
+        return true;
+      }
+      return false;
+    });
+    if (index == -1) return;
+
+    if (this.timeline != index) {
+      this.timeline$.next(index);
+    }
+    this.timeline = index;
+  }
+
+  formatter(str: string) {
+    // "[00:00.266] today I'm going to talk to you about some"
+    const eeee = str.split('] ');
+    const time = eeee[0].split('[')[1];
+    const txt = eeee[1];
+
+    const ssss = time.split(':');
+
+    let t = parseInt(ssss[0]) * 60 + parseFloat(ssss[1]);
+
+    if (t) {
+      t = parseFloat(t.toFixed(4));
+    }
+
+    return {
+      time: t,
+      txt,
+    };
+  }
+
+  loadLrc(src: string) {
+    this.data.lrc(src).subscribe((txt) => {
+      const data = txt.split('\r');
+      this.lrc = data.map((s) => this.formatter(s)).filter((o) => o.time);
+      this.lrc$.next(this.lrc);
+    });
+  }
+}

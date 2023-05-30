@@ -1,0 +1,34 @@
+.panel {
+  height: calc(100vh - 180px);
+  overflow-y: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  position: relative;
+  h6 {
+    position: absolute;
+    height: 1px;
+    background: rgb(161, 161, 161);
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+}
+
+.ok {
+  color: rgb(234, 152, 70);
+}
+
+ul {
+  text-align: center;
+}
+
+li {
+  color: white;
+}
+
+@media screen and (max-width: 960px) {
+  .panel {
+    height: calc(100vh - 140px);
+  }
+}
