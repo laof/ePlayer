@@ -3,28 +3,43 @@
   overflow-y: hidden;
   cursor: pointer;
   user-select: none;
-
   position: relative;
   h6 {
     position: absolute;
-    height: 1px;
+    height: 0.5px;
     background: rgb(161, 161, 161);
     top: 50%;
     left: 0;
+    width: 60%;
+    margin: auto;
+    margin-top: 0.75px;
     right: 0;
   }
 }
 
-.ok {
-  color: rgb(234, 152, 70);
-}
+:host ::ng-deep {
+  li {
+    color: rgb(238, 234, 226);
+    padding: 4px 6px;
 
-ul {
-  text-align: center;
+    &.ok {
+      font-size: 24px;
+      padding: 6px;
+      color: rgb(234, 152, 70);
+    }
+  }
+
+  ul {
+    text-align: center;
+    &.auto {
+      transition: margin 50ms ease-in 50ms;
+    }
+  }
 }
 
 li {
   color: white;
+  padding: 5px 10px;
 }
 
 @media screen and (max-width: 960px) {

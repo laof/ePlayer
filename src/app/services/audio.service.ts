@@ -32,7 +32,8 @@ export class AudioService {
   init() {
     this.audio.preload = 'auto';
     this.audio.controls = true;
-    this.audio.currentTime = 20;
+    // this.audio.currentTime = 60 * 4 + 50;
+    this.audio.currentTime = 50;
     this.audio.ontimeupdate = () => this.ontimeupdate();
     this.audio.addEventListener('loadedmetadata', () => {
       const d = this.audio.duration;
@@ -101,7 +102,7 @@ export class AudioService {
 
   formatter(str: string) {
     // "[00:00.266] today I'm going to talk to you about some"
-    const eeee = str.split('] ');
+    const eeee = str.split(']');
     const time = eeee[0].split('[')[1];
     const txt = eeee[1];
 
@@ -121,7 +122,7 @@ export class AudioService {
 
   loadLrc(src: string) {
     this.data.lrc(src).subscribe((txt) => {
-      const data = txt.split('\r');
+      const data = txt.split('\n');
       this.lrc = data.map((s) => this.formatter(s)).filter((o) => o.time);
       this.lrc$.next(this.lrc);
     });

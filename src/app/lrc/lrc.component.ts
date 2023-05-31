@@ -1,4 +1,3 @@
-import { getCurrencySymbol } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -9,6 +8,7 @@ import {
 import { filter } from 'rxjs';
 import { LRC } from '../services/data.service';
 import { AudioService } from '../services/audio.service';
+import { add, subtract, multiply, divide } from 'mathjs';
 
 @Component({
   selector: 'app-lrc',
@@ -17,7 +17,7 @@ import { AudioService } from '../services/audio.service';
 })
 export class LrcComponent implements OnInit, OnDestroy {
   @ViewChild('ref', { static: true }) ref!: ElementRef;
-  @ViewChild('txt', { static: true }) ul!: ElementRef;
+  @ViewChild('ul', { static: true }) ul!: ElementRef;
 
   heightList: number[] = [];
 
@@ -29,11 +29,18 @@ export class LrcComponent implements OnInit, OnDestroy {
 
   domHeight = 0;
 
+  getId(i: number) {
+    return `lrc${i}`;
+  }
+
   constructor(private d: AudioService) {
     this.d.lrc$.pipe(filter((res) => res.length > 0)).subscribe({
       next: (res) => {
-        this.list = res.filter((ob, i) => i < 100);
-        setTimeout(() => this.updateItemheight(), 1000);
+        const list = res.map((res, i: number) => {
+          return `<li id="${this.getId(i)}">${res.txt}</li>`;
+        });
+        this.ul.nativeElement.innerHTML = list.join('');
+        this.updateItemheight();
       },
     });
 
@@ -46,13 +53,27 @@ export class LrcComponent implements OnInit, OnDestroy {
       const ulDom = this.ul.nativeElement;
 
       this.currindex = index;
+      let selectHeight = 0;
 
-      const d = this.heightList.filter((o, i) => i <= index);
-      const top =
-        d.reduce((prev, curren) => prev + curren, 0) -
-        this.heightList[index] / 2;
+      const eeee: HTMLLIElement = this.ul.nativeElement.querySelector('.ok');
+      if (eeee) {
+        eeee.classList.remove('ok');
+      }
 
-      const total = this.domHeight / 2 - top;
+      const aaa = this.ul.nativeElement.querySelector('#' + this.getId(index));
+
+      if (aaa) {
+        aaa.classList.add('ok');
+        selectHeight = parseFloat(getComputedStyle(aaa).height);
+      }
+
+      const d = this.heightList.filter((o, i) => i < index);
+      const all = d.reduce((prev, curren) => add(prev, curren), 0);
+      if (!all) return;
+      const top = add(all, divide(selectHeight, 2));
+      let total = subtract(divide(this.domHeight, 2), top);
+      // console.log(divide(selectHeight, 2));
+      // total = subtract(total, divide(selectHeight, 2));
       ulDom.style.marginTop = `${total}px`;
     });
   }
@@ -63,8 +84,17 @@ export class LrcComponent implements OnInit, OnDestroy {
     );
 
     li.forEach((ele, i: number) => {
-      const h = parseInt(getComputedStyle(ele).height);
+      const selected = Array.from(ele.classList).includes('ok');
+
+      if (selected) {
+        ele.classList.remove('ok');
+      }
+
+      const h = parseFloat(getComputedStyle(ele).height);
       this.heightList[i] = h;
+      if (selected) {
+        ele.classList.add('ok');
+      }
     });
   }
 
@@ -106,6 +136,11 @@ export class LrcComponent implements OnInit, OnDestroy {
     let l: number;
     let t: number;
     let marginTop = 0;
+
+    if (this.ul && this.ul.nativeElement) {
+      this.ul.nativeElement.classList.remove('auto');
+    }
+
     document.onmousemove = (e) => {
       l = e.clientX - disX;
       t = e.clientY - disY;
@@ -130,7 +165,8 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.show = false;
     document.onmousemove = null;
 
-    if (hei) {
+    if (this.ul && this.ul.nativeElement) {
+      this.ul.nativeElement.classList.add('auto');
     }
   }
 }

@@ -5,13 +5,5 @@
   (mouseup)="mouseup(0)"
 >
   <h6 *ngIf="show"></h6>
-  <ul #txt>
-    <li
-      [attr.index]="i"
-      [ngClass]="{ ok: currindex == i }"
-      *ngFor="let item of list; let i = index"
-    >
-      {{ item.txt }}
-    </li>
-  </ul>
+  <ul #ul></ul>
 </div>

@@ -1,12 +1,12 @@
 [
   {
+    "name": "loulan",
+    "url": "assets/mp3/loulan.mp3",
+    "lrc": "assets/mp3/loulan.lrc"
+  },
+  {
     "name": "test",
     "url": "assets/mp3/test.mp3",
     "lrc": "assets/mp3/test.lrc"
-  },
-  {
-    "name": "test1",
-    "url": "assets/mp3/test.mp3",
-    "lrc": "assets/mp3/test1.lrc"
   }
 ]
