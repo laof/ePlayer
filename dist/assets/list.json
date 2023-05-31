@@ -1,12 +1,14 @@
 [
   {
-    "name": "loulan",
+    "name": "Loulan",
     "url": "assets/mp3/loulan.mp3",
-    "lrc": "assets/mp3/loulan.lrc"
+    "lrc": "assets/mp3/loulan.lrc",
+    "time": "05:09"
   },
   {
-    "name": "test",
+    "name": "Test",
     "url": "assets/mp3/test.mp3",
-    "lrc": "assets/mp3/test.lrc"
+    "lrc": "assets/mp3/test.lrc",
+    "time": "45:19"
   }
 ]

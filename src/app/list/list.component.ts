@@ -17,8 +17,11 @@ export class ListComponent {
     });
 
     this.audio.index$.subscribe((index) => {
-      console.log(index);
       this.index = index;
     });
+  }
+
+  play(i: number) {
+    this.audio.play(i);
   }
 }

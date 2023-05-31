@@ -17,6 +17,7 @@ export interface Music {
   name: string;
   url: string;
   lrc: string;
+  time: string;
 }
 
 @Injectable({

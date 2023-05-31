@@ -17,8 +17,10 @@
           </ng-template>
         </span>
         <span class="music-name">{{ item.name }}</span>
-        <span class="auth-name music-album">播放</span>
-        <span class="music-album">00:30</span>
+        <span class="auth-name music-album playthis" (click)="play(i)"
+          >播放</span
+        >
+        <span class="music-album">{{ item.time }}</span>
       </li>
     </ul>
   </div>

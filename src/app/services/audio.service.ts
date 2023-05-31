@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DataService, Loop, LRC, Music } from './data.service';
+import { add, subtract, multiply, divide } from 'mathjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,10 @@ export class AudioService {
     });
   }
 
+  goto(m: number) {
+    this.audio.currentTime = m;
+  }
+
   init() {
     this.audio.preload = 'auto';
     this.audio.controls = true;
@@ -52,7 +57,11 @@ export class AudioService {
     play && this.audio.play();
   }
 
-  play() {
+  play(i?: number) {
+    if (i != undefined) {
+      this.index = i;
+      this.load();
+    }
     this.index$.next(this.index);
     this.audio.play();
   }
@@ -108,7 +117,8 @@ export class AudioService {
 
     const ssss = time.split(':');
 
-    let t = parseInt(ssss[0]) * 60 + parseFloat(ssss[1]);
+    const mmm = multiply(parseInt(ssss[0]), 60);
+    let t = add(mmm, parseFloat(ssss[1]));
 
     if (t) {
       t = parseFloat(t.toFixed(4));
@@ -122,7 +132,11 @@ export class AudioService {
 
   loadLrc(src: string) {
     this.data.lrc(src).subscribe((txt) => {
-      const data = txt.split('\n');
+      let data = txt.split('\n');
+
+      if (data.length < 3) {
+        data = txt.split('\r');
+      }
       this.lrc = data.map((s) => this.formatter(s)).filter((o) => o.time);
       this.lrc$.next(this.lrc);
     });
