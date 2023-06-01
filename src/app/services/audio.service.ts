@@ -68,6 +68,7 @@ export class AudioService {
     });
     this.audio.addEventListener('ended', () => {
       this.progress$.next(jGYBIProgress);
+      this.audio.play();
     });
   }
 

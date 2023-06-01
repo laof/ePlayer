@@ -25,7 +25,12 @@ h1 {
   height: 30px;
   text-align: center;
   font-weight: normal;
-  color: #ffffff;
+  color: #fff;
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 :host ::ng-deep {
