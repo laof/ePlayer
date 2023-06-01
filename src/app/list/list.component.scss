@@ -1,9 +1,8 @@
 .dddd {
   display: flex;
-  padding-top: 10px;
-}
-.list-num {
-  flex: 0 0 30px;
+  max-width: 1200px;
+  margin: auto;
+  height: 100%;
 }
 
 .playthis {
@@ -19,6 +18,18 @@
 }
 .list {
   flex: 3;
+  overflow-y: auto;
+}
+
+.iiiiii {
+  flex: 1;
+}
+
+.item li.end {
+  justify-content: center;
+  border-bottom: none;
+  color: #646464;
+  font-size: 12px;
 }
 
 .list-mobile-menu {
@@ -27,7 +38,8 @@
 .music-cover {
   width: 186px;
   height: 186px;
-  flex: 1;
+
+  margin: auto;
   position: relative;
 
   img {
@@ -54,8 +66,7 @@
     width: 100%;
     height: 50px;
     line-height: 50px;
-    color: #bdbdbe;
-    color: rgba(225, 225, 225, 0.8);
+    color: white;
     font-size: 14px;
     border-bottom: 1px solid rgba(150, 150, 150, 0.1);
     cursor: default;
@@ -72,6 +83,7 @@
   position: relative;
   overflow: hidden;
   flex: 1;
+  text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -86,12 +98,15 @@
 }
 
 @media screen and (max-width: 960px) {
-  .music-cover {
-    display: none;
-  }
-
   .music-name {
     flex: 0.8;
+  }
+
+  .dddd {
+    flex-direction: column;
+  }
+  .iiiiii {
+    margin-bottom: 16px;
   }
 }
 
@@ -106,4 +121,15 @@
 
 .auth-name {
   padding-right: 12px;
+}
+
+.back {
+  display: flex;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  user-select: none;
+  cursor: pointer;
+  font-size: 14px;
 }

@@ -4,12 +4,14 @@ import { DataService, Loop, LRC, Music } from './data.service';
 import { add, subtract, multiply, divide } from 'mathjs';
 
 interface JGYBIProgress {
-  timeLabel: string;
+  currentTime: string;
+  totalTime: string;
   value: number;
 }
 
 const jGYBIProgress: JGYBIProgress = {
-  timeLabel: '00:00/00:00',
+  currentTime: '00:00',
+  totalTime: '00:00',
   value: 0,
 };
 
@@ -26,6 +28,7 @@ export class AudioService {
 
   loop = Loop.None;
 
+  newName$ = new BehaviorSubject('');
   lrc$ = new BehaviorSubject(this.lrc);
   list$ = new BehaviorSubject(this.list);
   progress$ = new BehaviorSubject<JGYBIProgress>(jGYBIProgress);
@@ -34,8 +37,9 @@ export class AudioService {
 
   constructor(private data: DataService) {
     this.init();
-    this.data.list().subscribe((res) => {
-      this.list = res as Music[];
+    this.data.list().subscribe((res: any) => {
+      const aa = [...res, ...res, ...res];
+      this.list = [...aa, ...aa];
       this.list$.next(this.list);
       this.load(false);
     });
@@ -57,7 +61,7 @@ export class AudioService {
     this.audio.preload = 'auto';
     this.audio.controls = true;
     // this.audio.currentTime = 60 * 4 + 50;
-    this.audio.currentTime = 50;
+    // this.audio.currentTime = 50;
     this.audio.ontimeupdate = () => this.ontimeupdate();
     this.audio.addEventListener('loadedmetadata', () => {
       const d = this.audio.duration;
@@ -71,6 +75,7 @@ export class AudioService {
     this.audio.pause();
     const data = this.list[this.index];
     if (!data) return;
+    this.newName$.next(data.name);
     this.audio.src = data.url;
     this.loadLrc(data.lrc);
     play && this.audio.play();
@@ -112,6 +117,10 @@ export class AudioService {
   }
 
   stoms(m: number) {
+    if (m !== 0 && !m) {
+      return jGYBIProgress.currentTime;
+    }
+
     const aa = divide(m, 60).toFixed(2);
     return aa.replace('.', ':');
   }
@@ -123,7 +132,8 @@ export class AudioService {
     const aa = multiply(divide(time, all), 100);
 
     const __dd: JGYBIProgress = {
-      timeLabel: this.stoms(time) + '/' + this.stoms(all),
+      currentTime: this.stoms(time),
+      totalTime: this.stoms(all),
       value: aa,
     };
 

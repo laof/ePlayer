@@ -1,37 +1,5 @@
-<div id="blur-img">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    width="1828"
-    height="868"
-    id="blurred_fkbkkxe7k"
-    class="blured-img"
-    viewBox="0 0 1828 868"
-    preserveAspectRatio="none"
-  >
-    <filter id="blur_fkbkkxe7k">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="50"></feGaussianBlur>
-    </filter>
-    <image
-      x="0"
-      y="0"
-      width="1828"
-      height="868"
-      externalResourcesRequired="true"
-      xlink:href=""
-      style="filter: url(#blur_fkbkkxe7k)"
-      preserveAspectRatio="none"
-    ></image>
-  </svg>
-  <div class="blur-mask" style="display: block"></div>
-</div>
-<div class="logo">♫ ePlayer</div>
-<div class="main">
-  <ul class="menus">
-    <li (click)="test('home')">正在播放</li>
-    <li (click)="test('list')">播放列表</li>
-    <li>本地歌曲</li>
-  </ul>
-  <router-outlet></router-outlet>
-</div>
-<app-player></app-player>
+<div class="mask"></div>
+<app-lrc [ngClass]="{ yaotan: haha }">
+  <div class="niihao" *ngIf="haha"><app-list></app-list></div>
+</app-lrc>
+<app-player (showshow)="fdfa($event)"></app-player>

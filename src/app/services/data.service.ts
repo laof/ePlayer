@@ -31,6 +31,11 @@ export class DataService {
   }
 
   list() {
+    // return this.http.get('https://laof.github.io/em/src/assets/list.json');
+    if (location.host == 'laof.github.io') {
+      return this.http.get('https://laof.github.io/em/src/assets/list.json');
+    }
+
     return this.http.get('assets/list.json');
   }
 }

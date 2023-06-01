@@ -1,4 +1,9 @@
 <div class="dddd">
+  <div class="iiiiii">
+    <div class="music-cover" (click)="dfdasf()">
+      <img draggable="false" src="assets/download.png" />
+    </div>
+  </div>
   <div class="list">
     <ul class="item">
       <li class="header">
@@ -22,9 +27,11 @@
         >
         <span class="music-album">{{ item.time }}</span>
       </li>
+
+      <li *ngIf="list.length" class="end">
+        总共 {{ list.length }}
+      </li>
     </ul>
   </div>
-  <div class="music-cover">
-    <img draggable="false" src="assets/download.png" />
-  </div>
 </div>
+<!-- <div class="back" (click)="dfdasf()">关闭</div> -->

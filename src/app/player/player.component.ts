@@ -1,4 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AudioService } from '../services/audio.service';
 import { Loop } from '../services/data.service';
@@ -9,6 +15,8 @@ import { Loop } from '../services/data.service';
   styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent {
+  @Output() showshow = new EventEmitter();
+
   btnClass = {};
   index = 0;
   lrc: any[] = [];
@@ -31,23 +39,26 @@ export class PlayerComponent {
     });
 
     let input: HTMLInputElement;
-    let tokd: HTMLLabelElement;
+    let aaa: HTMLLabelElement;
+    let bbb: HTMLLabelElement;
 
     this.audio.progress$.subscribe((res) => {
       if (!input) {
         input = this.ele.nativeElement.querySelector('.ddddd');
-        tokd = this.ele.nativeElement.querySelector('.tokd');
+        aaa = this.ele.nativeElement.querySelector('.aaa');
+        bbb = this.ele.nativeElement.querySelector('.bbb');
       }
 
-      if (tokd) {
-        tokd.innerHTML = res.timeLabel;
+      if (aaa) {
+        aaa.innerHTML = res.currentTime;
+        bbb.innerHTML = res.totalTime;
       }
 
       if (this.blockckckc) {
         return;
       }
 
-      if (input) {
+      if (input && res.value) {
         input.value = String(res.value);
       }
     });
@@ -129,4 +140,11 @@ export class PlayerComponent {
     this.isPalying = true;
     this.audio.gotobytimeline(parseFloat(e.value));
   }
+
+  ddddd() {
+    this.dialoggg = !this.dialoggg;
+    this.showshow.next(this.dialoggg);
+  }
+
+  dialoggg = true;
 }

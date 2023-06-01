@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { filter } from 'rxjs';
 import { Music } from '../services/data.service';
 import { AudioService } from '../services/audio.service';
@@ -9,6 +9,8 @@ import { AudioService } from '../services/audio.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
+  @Output() colonsesewe = new EventEmitter();
+
   list: Music[] = [];
   index: number = 0;
   constructor(private audio: AudioService) {
@@ -23,5 +25,9 @@ export class ListComponent {
 
   play(i: number) {
     this.audio.play(i);
+  }
+
+  dfdasf() {
+    this.colonsesewe.next(true);
   }
 }

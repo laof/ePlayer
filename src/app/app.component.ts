@@ -14,4 +14,9 @@ export class AppComponent {
   test(r: string) {
     this.router.navigateByUrl(r);
   }
+
+  haha = false;
+  fdfa(bb: boolean) {
+    this.haha = !this.haha;
+  }
 }

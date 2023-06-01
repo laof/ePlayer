@@ -20,6 +20,8 @@ export class LrcComponent implements OnInit, OnDestroy {
   @ViewChild('ul', { static: true }) ul!: ElementRef;
   @ViewChild('line', { static: true }) line!: ElementRef;
 
+  name = '';
+
   heightList: number[] = [];
 
   currindex = 0;
@@ -72,6 +74,10 @@ export class LrcComponent implements OnInit, OnDestroy {
       if (!this.ul || !this.ul.nativeElement) return;
       this.caclHeight();
       this.updateItemheight();
+    });
+
+    this.audio.newName$.subscribe((res) => {
+      this.name = res;
     });
   }
 
@@ -213,5 +219,10 @@ export class LrcComponent implements OnInit, OnDestroy {
     if (a != -1) {
       this.audio.goto(this.list[a].time);
     }
+  }
+
+  dialoggg = true;
+  hahafdfaf() {
+    this.dialoggg = false;
   }
 }

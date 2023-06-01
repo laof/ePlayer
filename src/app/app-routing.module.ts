@@ -4,15 +4,15 @@ import { ListComponent } from './list/list.component';
 import { LrcComponent } from './lrc/lrc.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    component: LrcComponent,
-  },
-  {
-    path: 'list',
-    component: ListComponent,
-  },
-  { path: '**', redirectTo: 'home' },
+  // {
+  //   path: 'home',
+  //   component: LrcComponent,
+  // },
+  // {
+  //   path: 'list',
+  //   component: ListComponent,
+  // },
+  // { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
