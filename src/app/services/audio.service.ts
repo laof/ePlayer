@@ -3,6 +3,16 @@ import { BehaviorSubject } from 'rxjs';
 import { DataService, Loop, LRC, Music } from './data.service';
 import { add, subtract, multiply, divide } from 'mathjs';
 
+interface JGYBIProgress {
+  timeLabel: string;
+  value: number;
+}
+
+const jGYBIProgress: JGYBIProgress = {
+  timeLabel: '00:00/00:00',
+  value: 0,
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,6 +28,7 @@ export class AudioService {
 
   lrc$ = new BehaviorSubject(this.lrc);
   list$ = new BehaviorSubject(this.list);
+  progress$ = new BehaviorSubject<JGYBIProgress>(jGYBIProgress);
   index$ = new BehaviorSubject(-1);
   timeline$ = new BehaviorSubject(this.timeline);
 
@@ -34,6 +45,14 @@ export class AudioService {
     this.audio.currentTime = m;
   }
 
+  gotobytimeline(nn: number) {
+    const a = this.audio.duration;
+    if (a) {
+      this.goto(multiply(a, divide(nn, 100)));
+      this.audio.play();
+    }
+  }
+
   init() {
     this.audio.preload = 'auto';
     this.audio.controls = true;
@@ -44,7 +63,7 @@ export class AudioService {
       const d = this.audio.duration;
     });
     this.audio.addEventListener('ended', () => {
-      const d = this.audio.duration;
+      this.progress$.next(jGYBIProgress);
     });
   }
 
@@ -92,8 +111,24 @@ export class AudioService {
     this.load();
   }
 
+  stoms(m: number) {
+    const aa = divide(m, 60).toFixed(2);
+    return aa.replace('.', ':');
+  }
+
   ontimeupdate() {
     const time = this.audio.currentTime;
+    const all = this.audio.duration;
+
+    const aa = multiply(divide(time, all), 100);
+
+    const __dd: JGYBIProgress = {
+      timeLabel: this.stoms(time) + '/' + this.stoms(all),
+      value: aa,
+    };
+
+    this.progress$.next(__dd);
+
     const index = this.lrc.findIndex((obj, i) => {
       const next = this.lrc[i + 1];
       if (time >= obj.time && next && time < next.time) {

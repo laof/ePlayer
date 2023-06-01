@@ -1,66 +1,50 @@
 <div class="footer">
-  <div class="container">
-    <div class="con-btn">
-      <a
-        href="javascript:;"
-        class="player-btn btn-prev"
-        (click)="next(0)"
-        title="上一首"
-      ></a>
-      <a
-        href="javascript:;"
-        class="player-btn btn-play"
-        [ngClass]="{ 'btn-state-paused': isPalying }"
-        (click)="ok()"
-        title="暂停/继续"
-      ></a>
-      <a
-        href="javascript:;"
-        class="player-btn btn-next"
-        (click)="next(1)"
-        title="下一首"
-      ></a>
-      <a
-        href="javascript:;"
-        (click)="switch()"
-        class="player-btn btn-order"
-        [ngClass]="btnClass"
-        title="循环控制"
-      ></a>
-    </div>
-    <div class="progress">
-      <div class="progress-box">
-        <div id="music-progress" class="mkpgb-area mkpgb-locked">
-          <div class="mkpgb-bar"></div>
-          <div class="mkpgb-cur" style="width: 0%"></div>
-          <div class="mkpgb-dot dot-move" style="left: 0%"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="vol">
-      <div class="quiet">
-        <a
-          href="javascript:;"
-          (click)="long()"
-          [ngClass]="{ 'btn-state-quiet': fde }"
-          class="player-btn btn-quiet"
-          title="静音"
-        ></a>
-      </div>
-      <div class="volume">
-        <div class="volume-box">
-          <div id="volume-progress" class="mkpgb-area">
-            <div class="mkpgb-bar"></div>
-            <div class="mkpgb-cur" style="width: 39.4444%"></div>
-            <div class="mkpgb-dot" style="left: 39.4444%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--class="footer"-->
-
-    <!--class="progress"-->
+  <div class="fds-3">
+    <label class="tokd">00:00/00:00</label>
+    <input
+      (mousedown)="onmousedown($event)"
+      (mouseout)="onmouseout($event)"
+      class="ddddd"
+      (change)="fdasfa($event.target)"
+      type="range"
+    />
   </div>
-  <!--class="container"-->
+  <div class="vol">
+    <a
+      href="javascript:;"
+      (click)="long()"
+      [ngClass]="{ 'btn-state-quiet': fde }"
+      class="player-btn btn-quiet"
+      title="静音"
+    ></a>
+    <input type="range" />
+  </div>
+  <div class="con-btn">
+    <a
+      href="javascript:;"
+      class="player-btn btn-prev"
+      (click)="next(0)"
+      title="上一首"
+    ></a>
+    <a
+      href="javascript:;"
+      class="player-btn btn-play"
+      [ngClass]="{ 'btn-state-paused': isPalying }"
+      (click)="ok()"
+      title="暂停/继续"
+    ></a>
+    <a
+      href="javascript:;"
+      class="player-btn btn-next"
+      (click)="next(1)"
+      title="下一首"
+    ></a>
+    <a
+      href="javascript:;"
+      (click)="switch()"
+      class="player-btn btn-order"
+      [ngClass]="btnClass"
+      title="循环控制"
+    ></a>
+  </div>
 </div>

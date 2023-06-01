@@ -63,6 +63,7 @@ export class LrcComponent implements OnInit, OnDestroy {
     // total = subtract(total, divide(selectHeight, 2));
     if (!this.show) {
       ulDom.style.marginTop = `${total}px`;
+      // ulDom.style.transform = `translateY(${total}px)`;
     }
   }
 

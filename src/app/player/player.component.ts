@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AudioService } from '../services/audio.service';
 import { Loop } from '../services/data.service';
@@ -16,13 +16,48 @@ export class PlayerComponent {
   @ViewChild('res', { static: false }) res: any;
 
   isPalying = false;
+
+  blockckckc = false;
   list = ['btn-order-list', 'btn-order-random', 'btn-order-single'];
-  constructor(private http: HttpClient, private audio: AudioService) {
+  constructor(
+    private http: HttpClient,
+    private audio: AudioService,
+    private ele: ElementRef
+  ) {
     this.btnClass = { [this.list[this.index]]: true };
 
     this.audio.index$.subscribe((index) => {
       this.isPalying = index >= 0;
     });
+
+    let input: HTMLInputElement;
+    let tokd: HTMLLabelElement;
+
+    this.audio.progress$.subscribe((res) => {
+      if (!input) {
+        input = this.ele.nativeElement.querySelector('.ddddd');
+        tokd = this.ele.nativeElement.querySelector('.tokd');
+      }
+
+      if (tokd) {
+        tokd.innerHTML = res.timeLabel;
+      }
+
+      if (this.blockckckc) {
+        return;
+      }
+
+      if (input) {
+        input.value = String(res.value);
+      }
+    });
+  }
+
+  onmousedown(e: Event) {
+    this.blockckckc = true;
+  }
+  onmouseout(e: Event) {
+    this.blockckckc = false;
   }
 
   getFormatTimeBySecend(time: any) {
@@ -84,5 +119,14 @@ export class PlayerComponent {
   fde = false;
   long() {
     this.fde = !this.fde;
+  }
+
+  gottt(e: Event) {
+    console.log(e);
+  }
+
+  fdasfa(e: HTMLInputElement | any) {
+    this.isPalying = true;
+    this.audio.gotobytimeline(parseFloat(e.value));
   }
 }
