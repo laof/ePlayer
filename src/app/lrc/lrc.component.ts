@@ -150,62 +150,41 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.show = true;
   }
 
-  touchmove(event: any) {
-    const currentX = event.touches[0].clientX;
-    const currentY = event.touches[0].clientY;
-    const moveX = currentX - this.startX;
-    let moveY = currentY - this.startY;
+  touchstart(event: any) {
+    const ee = event.touches[0];
 
-    const midLine = divide(this.domHeight, 2);
-
+    this.show = this.list.length > 3;
     const ulDom = this.ul.nativeElement;
+    const ulHeight = parseInt(getComputedStyle(ulDom).height);
+    var disX = subtract(ee.clientX, ulDom.offsetLeft);
+    var disY = subtract(ee.clientY, ulDom.offsetTop);
+    let l: number;
+    let t: number;
+    let marginTop = 0;
 
-    const { height, marginTop } = getComputedStyle(ulDom);
-
-    const ulHeight = parseFloat(height);
-    moveY = add(parseFloat(marginTop), moveY);
-
-    const buttom = ~subtract(ulHeight, midLine);
-
-    let t = 0;
-
-    if (moveY > midLine) {
-      t = midLine;
-    } else if (moveY < buttom) {
-      t = buttom;
-    } else {
-      t = moveY;
+    if (this.ul && this.ul.nativeElement) {
+      this.ul.nativeElement.classList.remove('auto');
     }
 
-    ulDom.style.marginTop = t + 'px';
-  }
+    document.ontouchmove = (e) => {
+      const eeeee = e.touches[0];
+      l = subtract(eeeee.clientX, disX);
+      t = subtract(eeeee.clientY, disY);
+      const midLine = divide(this.domHeight, 2);
 
-  startX = 0;
-  startY = 0;
+      const buttom = ~subtract(ulHeight, midLine);
 
-  touchend(event: any) {}
+      if (t > midLine) {
+        marginTop = midLine;
+      } else if (t < buttom) {
+        marginTop = buttom;
+      } else {
+        marginTop = t;
+      }
 
-  touchstart(event: any) {
-    this.startX = event.touches[0].clientX;
-    this.startY = event.touches[0].clientY;
-
-    // // 监听 touchmove 事件
-    // document.ontouchmove = (event) => {
-    //   const currentX = event.touches[0].clientX;
-    //   const currentY = event.touches[0].clientY;
-
-    //   const deltaX = currentX - startX;
-    //   const deltaY = currentY - startY;
-
-    //   const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    //   console.log('移动距离：', distance);
-
-    //   // 更新开始触摸点的位置
-    //   startX = currentX;
-    //   startY = currentY;
-    // };
-    // document.ontouchend = () => (document.ontouchmove = null);
+      ulDom.style.marginTop = marginTop + 'px';
+    };
+    document.ontouchend = () => this.mouseup(true);
   }
 
   onmousedown(event: any) {
@@ -247,6 +226,9 @@ export class LrcComponent implements OnInit, OnDestroy {
 
     this.show = false;
     document.onmousemove = null;
+    document.ontouchmove = null;
+    document.onmouseup = null;
+    document.ontouchend = null;
 
     if (!this.ul || !this.ul.nativeElement) {
       return;

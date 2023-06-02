@@ -3,8 +3,6 @@
   class="panel"
   #ref
   (touchstart)="touchstart($event)"
-  (touchmove)="touchmove($event)"
-  (touchend)="touchend($event)"
   (mousedown)="onmousedown($event)"
 >
   <h6 #line [ngClass]="{ show: show }"></h6>
