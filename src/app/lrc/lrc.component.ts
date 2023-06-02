@@ -150,6 +150,64 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.show = true;
   }
 
+  touchmove(event: any) {
+    const currentX = event.touches[0].clientX;
+    const currentY = event.touches[0].clientY;
+    const moveX = currentX - this.startX;
+    let moveY = currentY - this.startY;
+
+    const midLine = divide(this.domHeight, 2);
+
+    const ulDom = this.ul.nativeElement;
+
+    const { height, marginTop } = getComputedStyle(ulDom);
+
+    const ulHeight = parseFloat(height);
+    moveY = add(parseFloat(marginTop), moveY);
+
+    const buttom = ~subtract(ulHeight, midLine);
+
+    let t = 0;
+
+    if (moveY > midLine) {
+      t = midLine;
+    } else if (moveY < buttom) {
+      t = buttom;
+    } else {
+      t = moveY;
+    }
+
+    ulDom.style.marginTop = t + 'px';
+  }
+
+  startX = 0;
+  startY = 0;
+
+  touchend(event: any) {}
+
+  touchstart(event: any) {
+    this.startX = event.touches[0].clientX;
+    this.startY = event.touches[0].clientY;
+
+    // // 监听 touchmove 事件
+    // document.ontouchmove = (event) => {
+    //   const currentX = event.touches[0].clientX;
+    //   const currentY = event.touches[0].clientY;
+
+    //   const deltaX = currentX - startX;
+    //   const deltaY = currentY - startY;
+
+    //   const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    //   console.log('移动距离：', distance);
+
+    //   // 更新开始触摸点的位置
+    //   startX = currentX;
+    //   startY = currentY;
+    // };
+    // document.ontouchend = () => (document.ontouchmove = null);
+  }
+
   onmousedown(event: any) {
     this.show = this.list.length > 3;
     const ulDom = this.ul.nativeElement;

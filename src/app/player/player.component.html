@@ -1,8 +1,11 @@
 <div class="fds-3">
-  <label class="aaa">00:00/00:00</label>
+  <label class="aaa">00:00</label>
   <input
+    (touchstart)="onmousedown($event)"
+    (touchmove)="onmousedown($event)"
     (mousedown)="onmousedown($event)"
     (mouseout)="onmouseout($event)"
+    (touchend)="onmouseout($event)"
     class="ddddd"
     value="0"
     (change)="fdasfa($event.target)"
