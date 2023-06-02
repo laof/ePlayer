@@ -22,8 +22,11 @@ app-lrc {
   display: block;
   position: relative;
   padding-bottom: 20px;
-  &.yaotan ::ng-deep li {
-    color: transparent;
+  &.yaotan ::ng-deep {
+    h1,
+    li {
+      color: transparent;
+    }
   }
 }
 

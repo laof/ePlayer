@@ -9,13 +9,22 @@
     height: 0.5px;
     top: 50%;
     left: 0;
-    width: 60%;
+    width: 70%;
+    max-width: 500px;
     margin: auto;
     margin-top: 0.75px;
     right: 0;
     background: transparent;
     &.show {
-      background: rgb(161, 161, 161);
+      background: linear-gradient(
+        to left,
+        transparent 0%,
+        transparent 50%,
+        hsla(0, 0%, 100%, 0.7) 50%,
+        hsla(0, 0%, 100%, 0.7) 50%
+      );
+      background-size: 10px 1px;
+      background-repeat: repeat-x;
     }
   }
 }
@@ -35,13 +44,17 @@ h1 {
 
 :host ::ng-deep {
   li {
-    color: rgb(238, 234, 226);
+    color: #af6f1e;
     padding: 4px 6px;
 
     &.ok {
       font-size: 24px;
       padding: 6px;
-      color: rgb(234, 152, 70);
+      color: white;
+
+      .zh {
+        font-size: 16px;
+      }
     }
   }
 

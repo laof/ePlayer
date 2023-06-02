@@ -119,15 +119,27 @@ export class LrcComponent implements OnInit, OnDestroy {
     }
   }
 
+  dddddtoto000() {
+    this.caclHeight();
+    if (this.domHeight) {
+      const hei = this.domHeight / 2 + 'px';
+      this.ul.nativeElement.style.marginTop = hei;
+    }
+  }
+
   ngOnInit(): void {
     this.audio.lrc$.pipe(filter((res) => res.length > 0)).subscribe({
       next: (res) => {
         this.list = res;
         const list = res.map((res, i: number) => {
-          return `<li id="${this.getId(i)}">${res.txt}</li>`;
+          const aaaa = res.txt.split('<br>');
+          const zh = aaaa[1] ? `<div class="zh">${aaaa[1].trim()}</div>` : '';
+          const ok = aaaa[0].trim() + zh;
+          return `<li id="${this.getId(i)}">${ok}</li>`;
         });
         this.ul.nativeElement.innerHTML = list.join('');
         this.updateItemheight();
+        this.dddddtoto000();
       },
     });
 
@@ -139,9 +151,7 @@ export class LrcComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.caclHeight();
-    const hei = this.domHeight / 2 + 'px';
-    this.ul.nativeElement.style.marginTop = hei;
+    this.dddddtoto000();
     // this.txt.nativeElement.style.marginBottom = hei;
     this.ob.observe(this.ref.nativeElement);
   }

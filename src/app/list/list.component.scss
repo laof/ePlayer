@@ -1,3 +1,7 @@
+* {
+  user-select: none;
+}
+
 .dddd {
   display: flex;
   max-width: 1200px;
@@ -12,9 +16,8 @@
 .list-num {
   display: block;
   flex: 0 0 40px;
-  text-align: center;
-  float: left;
   overflow: hidden;
+  text-align: left;
 }
 .list {
   flex: 3;
@@ -32,9 +35,6 @@
   font-size: 12px;
 }
 
-.list-mobile-menu {
-  display: none;
-}
 .music-cover {
   width: 186px;
   height: 186px;
@@ -65,18 +65,25 @@
   li {
     width: 100%;
     height: 50px;
-    line-height: 50px;
-    color: white;
+    color: #af6f1e;
     font-size: 14px;
     border-bottom: 1px solid rgba(150, 150, 150, 0.1);
     cursor: default;
-    position: relative;
+    align-items: center;
     display: flex;
 
-    &:not(.header) :hover {
+    &:hover .haha3333 {
+      color: white;
+    }
+
+    &.ok .haha3333 {
       color: white;
     }
   }
+}
+
+.haha3333 {
+  cursor: pointer;
 }
 
 .music-name {
@@ -84,24 +91,27 @@
   overflow: hidden;
   flex: 1;
   text-align: left;
+  font-size: 14px;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.music-album {
+.btn-play {
+  flex: 0 0 34px;
+}
+
+.music-time {
   position: relative;
   display: block;
   word-break: keep-all;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 12px;
+  flex: 0 0 60px;
 }
 
 @media screen and (max-width: 960px) {
-  .music-name {
-    flex: 0.8;
-  }
-
   .dddd {
     flex-direction: column;
   }
@@ -117,19 +127,4 @@
   .music-album {
     width: 120px;
   }
-}
-
-.auth-name {
-  padding-right: 12px;
-}
-
-.back {
-  display: flex;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-  user-select: none;
-  cursor: pointer;
-  font-size: 14px;
 }

@@ -1,5 +1,11 @@
 [
   {
+    "name": "My LouLan",
+    "url": "assets/mp3/loulan.mp3",
+    "lrc": "assets/mp3/loulan.lrc",
+    "time": "05:29"
+  },
+  {
     "name": "Technical English VV 24 - Internet Technology",
     "url": "assets/mp3/Technical English VV 24 - Internet Technology.MP3",
     "lrc": "assets/mp3/Technical English VV 24 - Internet Technology.lrc",
@@ -16,11 +22,5 @@
     "url": "assets/mp3/English Vocabulary for IT VV 25 - Internet Technol.MP3",
     "lrc": "assets/mp3/English Vocabulary for IT VV 25 - Internet Technol.lrc",
     "time": "10:15"
-  },
-  {
-    "name": "My LouLan",
-    "url": "assets/mp3/loulan.mp3",
-    "lrc": "assets/mp3/loulan.lrc",
-    "time": "05:29"
   }
 ]
