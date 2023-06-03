@@ -22,7 +22,7 @@ export class PlayerComponent {
   lrc: any[] = [];
 
   @ViewChild('res', { static: false }) res: any;
-
+  dialoggg = false;
   isPalying = false;
 
   blockckckc = false;
@@ -141,10 +141,8 @@ export class PlayerComponent {
     this.audio.gotobytimeline(parseFloat(e.value));
   }
 
-  ddddd() {
+  closeDialoggg() {
     this.dialoggg = !this.dialoggg;
     this.showshow.next(this.dialoggg);
   }
-
-  dialoggg = true;
 }

@@ -9,7 +9,7 @@ import { AudioService } from '../services/audio.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
-  @Output() colonsesewe = new EventEmitter();
+  @Output() logoclose = new EventEmitter();
 
   list: Music[] = [];
   index: number = 0;
@@ -28,6 +28,6 @@ export class ListComponent {
   }
 
   dfdasf() {
-    this.colonsesewe.next(true);
+    this.logoclose.next(true);
   }
 }

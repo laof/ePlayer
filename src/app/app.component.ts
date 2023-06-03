@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
 import { AudioService } from './services/audio.service';
+import { PlayerComponent } from './player/player.component';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,19 @@ import { AudioService } from './services/audio.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'music';
-  constructor(private d: AudioService, private router: Router) {}
+  @ViewChild(PlayerComponent) playerComponent!: PlayerComponent;
 
-  test(r: string) {
-    this.router.navigateByUrl(r);
-  }
+  title = 'music';
+  constructor(private d: AudioService) {}
+
+  test(r: string) {}
 
   haha = false;
   fdfa(bb: boolean) {
     this.haha = !this.haha;
+  }
+
+  close() {
+    this.playerComponent.closeDialoggg();
   }
 }
