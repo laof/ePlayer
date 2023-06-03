@@ -26,7 +26,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: site
-        path: build
+        path: dist
 
   deploy:
     concurrency: ci-${{ github.ref }}
@@ -40,12 +40,12 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: site
-        path: build
+        path: dist
 
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         token: ${{ secrets.CDAPK }}
-        folder: build
+        folder: dist
         repository-name: laof/a
         target-folder: ./
         branch: main
