@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { filter } from 'rxjs';
+import { Subject, debounceTime, filter } from 'rxjs';
 import { LRC } from '../services/data.service';
 import { AudioService } from '../services/audio.service';
 import { add, subtract, multiply, divide } from 'mathjs';
@@ -20,6 +20,8 @@ export class LrcComponent implements OnInit, OnDestroy {
   @ViewChild('ul', { static: true }) ul!: ElementRef;
   @ViewChild('line', { static: true }) line!: ElementRef;
 
+  onlyOne$ = new Subject<string>();
+
   name = '';
 
   heightList: number[] = [];
@@ -29,6 +31,22 @@ export class LrcComponent implements OnInit, OnDestroy {
   ob;
 
   domHeight = 0;
+
+  constructor(private audio: AudioService) {
+    this.ob = new ResizeObserver(([entry]) => {
+      if (!this.ul || !this.ul.nativeElement) return;
+      this.caclHeight();
+      this.updateItemheight();
+    });
+
+    this.audio.newName$.subscribe((res) => {
+      this.name = res;
+    });
+    // debounceTime... throttleTime
+    this.onlyOne$.pipe(debounceTime(200)).subscribe({
+      next: (fanyi) => window.open(fanyi),
+    });
+  }
 
   getId(i: number) {
     return `lrc${i}`;
@@ -59,18 +77,6 @@ export class LrcComponent implements OnInit, OnDestroy {
     if (!this.show) {
       ulDom.style.marginTop = `${total}px`;
     }
-  }
-
-  constructor(private audio: AudioService) {
-    this.ob = new ResizeObserver(([entry]) => {
-      if (!this.ul || !this.ul.nativeElement) return;
-      this.caclHeight();
-      this.updateItemheight();
-    });
-
-    this.audio.newName$.subscribe((res) => {
-      this.name = res;
-    });
   }
 
   getLRCdom(): HTMLLIElement[] {
@@ -202,7 +208,9 @@ export class LrcComponent implements OnInit, OnDestroy {
   }
 
   openBaidu(word: string) {
-    window.open('https://fanyi.baidu.com/#en/zh/' + word);
+    // 1 touchstart
+    // 1 onmousedown
+    this.onlyOne$.next('https://fanyi.baidu.com/#en/zh/' + word);
   }
 
   // searfdasf(event: any) {
