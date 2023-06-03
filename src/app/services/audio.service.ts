@@ -157,7 +157,7 @@ export class AudioService {
   }
 
   formatter(str: string) {
-    // "[00:00.266] today I'm going to talk to you about some"
+    // "[00:00.266] today I'm going to talk to you about some"?
     const eeee = str.split(']');
     const time = eeee[0].split('[')[1];
     const txt = eeee[1];
