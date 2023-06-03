@@ -251,7 +251,7 @@ export class LrcComponent implements OnInit, OnDestroy {
   }
 
   mouseup(b: number, dom: HTMLElement) {
-    if (!this.show) return;
+    // if (!this.show) return;
 
     this.show = false;
     document.onmousemove = null;
