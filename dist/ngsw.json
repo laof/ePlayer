@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685755275365,
+  "timestamp": 1685756211650,
   "index": "/ePlayer/dist/index.html",
   "assetGroups": [
     {
@@ -99,7 +99,7 @@
     "/ePlayer/dist/favicon.ico": "04c278dba3e54393c4c980f7fd4dcd43796ef813",
     "/ePlayer/dist/index.html": "6c4feb4ff6ecacf56b1c6cdb33d4d54f7df850a9",
     "/ePlayer/dist/main.95596e3536b5b827.js": "871898a3f954c78d16173db9d6f16930cd258261",
-    "/ePlayer/dist/manifest.webmanifest": "29ade7fa24410f1813ff2c74bb590ffae57c26f1",
+    "/ePlayer/dist/manifest.webmanifest": "df5090925c23694e115fcc025cc9c2b4810ed588",
     "/ePlayer/dist/player.1012b947d8d298dd.png": "c797e81a3002095919230fa522a77fc423522d38",
     "/ePlayer/dist/polyfills.9af8b39fdf33f3ab.js": "2d965683c51df462d8f3b67422791fe5d468cd3b",
     "/ePlayer/dist/runtime.7ddf244aee91c801.js": "bd55117c3779227733d32abc8b435967c675dd0c",

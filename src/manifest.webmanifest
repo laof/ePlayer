@@ -1,9 +1,9 @@
 {
-  "name": "music",
-  "short_name": "music",
-  "theme_color": "#1976d2",
+  "name": "ePlayer",
+  "short_name": "ePlayer",
+  "theme_color": "#7f7280",
   "background_color": "#fafafa",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "./",
   "start_url": "./",
   "icons": [
