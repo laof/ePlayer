@@ -20,13 +20,13 @@ jobs:
       run: npm i -f
 
     - name: build
-      run: npm run build --prod
+      run: npm run build
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v3
       with:
         name: site
-        path: build
+        path: dist
 
   deploy:
     concurrency: ci-${{ github.ref }}
@@ -40,12 +40,12 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: site
-        path: build
+        path: dist
 
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         token: ${{ secrets.CDAPK }}
-        folder: build
+        folder: dist
         repository-name: laof/a
         target-folder: dist
         branch: main
