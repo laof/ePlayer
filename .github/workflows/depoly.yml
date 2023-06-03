@@ -8,24 +8,24 @@ jobs:
     runs-on: ubuntu-latest
     if: "contains(github.event.head_commit.message, 'cicd:')"
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: set nodejs
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+    - name: set nodejs
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
 
-      - name: install
-      - run: npm i -f
+    - name: install
+    - run: npm i -f
 
-      - name: build
-      - run: npm run build --prod
+    - name: build
+    - run: npm run build --prod
 
-      - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
-        uses: actions/upload-artifact@v3
-        with:
-          name: site
-          path: build
+    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
+      uses: actions/upload-artifact@v3
+      with:
+        name: site
+        path: build
 
   deploy:
     concurrency: ci-${{ github.ref }}
