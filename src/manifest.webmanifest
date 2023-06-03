@@ -2,7 +2,7 @@
   "name": "ePlayer",
   "short_name": "ePlayer",
   "theme_color": "#7f7280",
-  "background_color": "#fafafa",
+  "background_color": "#7f7280",
   "display": "fullscreen",
   "scope": "./",
   "start_url": "./",
