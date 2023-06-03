@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685774508774,
+  "timestamp": 1685792255846,
   "index": "/ePlayer/dist/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/ePlayer/dist/favicon.ico",
         "/ePlayer/dist/index.html",
-        "/ePlayer/dist/main.c83d630da9002610.js",
+        "/ePlayer/dist/main.85379176908f995c.js",
         "/ePlayer/dist/manifest.webmanifest",
         "/ePlayer/dist/polyfills.9af8b39fdf33f3ab.js",
         "/ePlayer/dist/runtime.7ddf244aee91c801.js",
@@ -83,7 +83,7 @@
     "/ePlayer/dist/assets/images/player.png": "c797e81a3002095919230fa522a77fc423522d38",
     "/ePlayer/dist/assets/images/player_cover.png": "49bb52af9f2b8a48ed144066d9d9f11503cc0298",
     "/ePlayer/dist/assets/images/wave.gif": "d10fbb0062b88f9b0d6c6365a87ca6854938c522",
-    "/ePlayer/dist/assets/list.json": "5a790432827f138455ea7e203025c4dbff250b1b",
+    "/ePlayer/dist/assets/list.json": "5fc8ff7c737e9f4751270f2cd74db7fef1bddb37",
     "/ePlayer/dist/assets/mp3/Business English Technology Vocabulary for IT - Web 2.0.MP3": "e7f35b34fa54cf720dcd0ec61372b31ebb6890ba",
     "/ePlayer/dist/assets/mp3/Business English Technology Vocabulary for IT - Web 2.0.lrc": "81e0c6f747bd5cc7c437b2494bb72ee67f6f38e3",
     "/ePlayer/dist/assets/mp3/English Vocabulary for IT VV 25 - Internet Technol.MP3": "626b86b4bdb0b5e8dca729080a1605279b237add",
@@ -97,8 +97,8 @@
     "/ePlayer/dist/assets/mp3/test.srt": "50287182d8bb12b0fdb43c9e6d0c8effdb26fe9e",
     "/ePlayer/dist/assets/mp3/test1.lrc": "c89465e78f946cf14f8470d817da0e2b0e7aaa81",
     "/ePlayer/dist/favicon.ico": "04c278dba3e54393c4c980f7fd4dcd43796ef813",
-    "/ePlayer/dist/index.html": "a071bb992f681f6d6afacc0b4fc8b0967ed6501f",
-    "/ePlayer/dist/main.c83d630da9002610.js": "96e428b6080b897ea1f9080abffa00d370da2a7f",
+    "/ePlayer/dist/index.html": "b4f0211f7f01de238102f0024001eca19914be5b",
+    "/ePlayer/dist/main.85379176908f995c.js": "3b88d72886db5bcae9c0b2342b608732db6e0bda",
     "/ePlayer/dist/manifest.webmanifest": "209a22bef1e8fdfa6490ae0211da0419a14f3533",
     "/ePlayer/dist/player.1012b947d8d298dd.png": "c797e81a3002095919230fa522a77fc423522d38",
     "/ePlayer/dist/polyfills.9af8b39fdf33f3ab.js": "2d965683c51df462d8f3b67422791fe5d468cd3b",

@@ -24,8 +24,6 @@ export class LrcComponent implements OnInit, OnDestroy {
 
   heightList: number[] = [];
 
-  currindex = 0;
-
   list: LRC[] = [];
   show = false;
   ob;
@@ -41,22 +39,19 @@ export class LrcComponent implements OnInit, OnDestroy {
 
     const ulDom = this.ul.nativeElement;
 
-    this.currindex = index;
-    let selectHeight = 0;
-
-    const eeee: HTMLLIElement = this.ul.nativeElement.querySelector('.ok');
+    const eeee: HTMLLIElement = ulDom.querySelector('.ok');
     if (eeee) {
       eeee.classList.remove('ok');
     }
 
-    const aaa = this.ul.nativeElement.querySelector('#' + this.getId(index));
-
+    const aaa = ulDom.querySelector('#' + this.getId(index));
+    let selectHeight = 0;
     if (aaa) {
       aaa.classList.add('ok');
       selectHeight = parseFloat(getComputedStyle(aaa).height);
     }
 
-    const all = this.heightList[index];
+    const all = this.heightList[index - 1];
     if (!all) return;
     const top = add(all, divide(selectHeight, 2));
     let total = subtract(divide(this.domHeight, 2), top);
@@ -168,11 +163,8 @@ export class LrcComponent implements OnInit, OnDestroy {
   }
 
   touchstart(event: any) {
-    if (this.searfdasf(event)) return;
-
     const ee = event.touches[0];
 
-    this.show = this.list.length > 3;
     const ulDom = this.ul.nativeElement;
     const ulHeight = parseInt(getComputedStyle(ulDom).height);
     var disX = subtract(ee.clientX, ulDom.offsetLeft);
@@ -186,6 +178,7 @@ export class LrcComponent implements OnInit, OnDestroy {
     }
 
     document.ontouchmove = (e) => {
+      this.show = this.list.length > 3;
       const eeeee = e.touches[0];
       l = subtract(eeeee.clientX, disX);
       t = subtract(eeeee.clientY, disY);
@@ -203,42 +196,39 @@ export class LrcComponent implements OnInit, OnDestroy {
 
       ulDom.style.marginTop = marginTop + 'px';
     };
-    document.ontouchend = () => this.mouseup(true);
+    document.ontouchend = () => {
+      this.mouseup(marginTop, event.target);
+    };
   }
 
-  openBaidu(word: string, touches: any) {
-    if (word.length < 3 || (touches && touches.length)) {
-      return;
-    }
+  openBaidu(word: string) {
     window.open('https://fanyi.baidu.com/#en/zh/' + word);
   }
 
-  searfdasf(event: any) {
-    const dom: HTMLDivElement = event.target;
-    const search = Array.from(dom.classList).includes('word');
+  // searfdasf(event: any) {
+  //   const dom: HTMLDivElement = event.target;
+  //   const search = Array.from(dom.classList).includes('word');
 
-    if (search) this.openBaidu(dom.innerHTML, event.touches);
+  //   if (search) this.openBaidu(dom.innerHTML, event.touches);
 
-    return search;
-  }
+  //   return search;
+  // }
 
   onmousedown(event: any) {
-    if (this.searfdasf(event)) return;
-
-    this.show = this.list.length > 3;
     const ulDom = this.ul.nativeElement;
     const ulHeight = parseInt(getComputedStyle(ulDom).height);
     var disX = subtract(event.clientX, ulDom.offsetLeft);
     var disY = subtract(event.clientY, ulDom.offsetTop);
     let l: number;
     let t: number;
-    let marginTop = 0;
 
     if (this.ul && this.ul.nativeElement) {
       this.ul.nativeElement.classList.remove('auto');
     }
+    let marginTop = 0;
 
     document.onmousemove = (e) => {
+      this.show = this.list.length > 3;
       l = subtract(e.clientX, disX);
       t = subtract(e.clientY, disY);
       const midLine = divide(this.domHeight, 2);
@@ -255,10 +245,12 @@ export class LrcComponent implements OnInit, OnDestroy {
 
       ulDom.style.marginTop = marginTop + 'px';
     };
-    document.onmouseup = () => this.mouseup(true);
+    document.onmouseup = () => {
+      this.mouseup(marginTop, event.target);
+    };
   }
 
-  mouseup(b: boolean) {
+  mouseup(b: number, dom: HTMLElement) {
     if (!this.show) return;
 
     this.show = false;
@@ -272,6 +264,13 @@ export class LrcComponent implements OnInit, OnDestroy {
     }
 
     this.ul.nativeElement.classList.add('auto');
+
+    if (!b) {
+      const search = Array.from(dom.classList).includes('word');
+      if (dom.innerHTML.length > 3 && search) this.openBaidu(dom.innerHTML);
+      return;
+    }
+
     const line = this.line.nativeElement;
     const { top } = line.getBoundingClientRect();
     const mid = divide(parseFloat(getComputedStyle(line).height), 2);
