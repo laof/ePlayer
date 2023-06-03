@@ -20,7 +20,7 @@ export class LrcComponent implements OnInit, OnDestroy {
   @ViewChild('ul', { static: true }) ul!: ElementRef;
   @ViewChild('line', { static: true }) line!: ElementRef;
 
-  onlyOne$ = new Subject<string>();
+  onlyOne$ = new Subject<string>(); // fuck..... compatibility
 
   name = '';
 
@@ -42,6 +42,7 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.audio.newName$.subscribe((res) => {
       this.name = res;
     });
+
     // debounceTime... throttleTime
     this.onlyOne$.pipe(debounceTime(200)).subscribe({
       next: (fanyi) => window.open(fanyi),
