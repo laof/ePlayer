@@ -6,32 +6,24 @@
   </div>
   <div class="list">
     <ul class="item">
-      <li class="header">
-        <span class="list-num"></span>
-        <span class="music-name">歌曲</span>
-        <span class="music-time">时长</span>
-      </li>
-      <li
-        *ngFor="let item of list; let i = index"
-        [ngClass]="{ ok: index == i }"
-      >
-        <span class="list-num">
-          <ng-container *ngIf="index == i; else currentRef">
-            <img src="assets/images/wave.gif" alt="" />
-          </ng-container>
-          <ng-template #currentRef>
-            {{ i + 1 }}
-          </ng-template>
-        </span>
-        <span class="music-name"
-          ><label class="haha3333" (click)="play(i)">
-            {{ item.name }}
-          </label></span
-        >
-        <span class="music-time">{{ item.time }}</span>
-      </li>
-
+      <ng-container *ngFor="let item of list; let i = index">
+        <li [ngClass]="{ ok: index == i }">
+          <span class="list-num">
+            <ng-container *ngIf="index != i; else currentRef">
+              {{ i + 1 }}
+            </ng-container>
+            <ng-template #currentRef>
+              <img src="assets/images/wave.gif" />
+            </ng-template>
+          </span>
+          <span class="music-name">
+            <span class="haha3333" (click)="play(i)">{{ item.name }}</span>
+          </span>
+          <span class="music-time">{{ item.time }}</span>
+        </li>
+      </ng-container>
       <li *ngIf="list.length" class="end">总共 {{ list.length }}</li>
+      <li *ngIf="!list.length" class="end">没有数据</li>
     </ul>
   </div>
 </div>

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685758043587,
+  "timestamp": 1685768509979,
   "index": "/ePlayer/dist/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/ePlayer/dist/favicon.ico",
         "/ePlayer/dist/index.html",
-        "/ePlayer/dist/main.95596e3536b5b827.js",
+        "/ePlayer/dist/main.f780722e394c16e7.js",
         "/ePlayer/dist/manifest.webmanifest",
         "/ePlayer/dist/polyfills.9af8b39fdf33f3ab.js",
         "/ePlayer/dist/runtime.7ddf244aee91c801.js",
@@ -97,8 +97,8 @@
     "/ePlayer/dist/assets/mp3/test.srt": "50287182d8bb12b0fdb43c9e6d0c8effdb26fe9e",
     "/ePlayer/dist/assets/mp3/test1.lrc": "c89465e78f946cf14f8470d817da0e2b0e7aaa81",
     "/ePlayer/dist/favicon.ico": "04c278dba3e54393c4c980f7fd4dcd43796ef813",
-    "/ePlayer/dist/index.html": "a2ecdeb747866980cc0ec4723c3a79ff97382966",
-    "/ePlayer/dist/main.95596e3536b5b827.js": "871898a3f954c78d16173db9d6f16930cd258261",
+    "/ePlayer/dist/index.html": "94d2b1460e06b209784aa1c25072f0e3701fe38d",
+    "/ePlayer/dist/main.f780722e394c16e7.js": "7b7efa340922d0c9e4e1a6dee6b576802a1e9558",
     "/ePlayer/dist/manifest.webmanifest": "209a22bef1e8fdfa6490ae0211da0419a14f3533",
     "/ePlayer/dist/player.1012b947d8d298dd.png": "c797e81a3002095919230fa522a77fc423522d38",
     "/ePlayer/dist/polyfills.9af8b39fdf33f3ab.js": "2d965683c51df462d8f3b67422791fe5d468cd3b",

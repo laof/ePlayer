@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AudioService } from '../services/audio.service';
-import { Loop } from '../services/data.service';
+import { Loop, loopDefulat } from '../services/data.service';
+import { LocalStorageService } from '../services/local-storage.service';
+
+const local_torage = 'local_torage';
 
 @Component({
   selector: 'app-player',
@@ -18,7 +21,9 @@ export class PlayerComponent {
   @Output() showshow = new EventEmitter();
 
   btnClass = {};
-  index = 0;
+
+  loopList = [Loop.List, Loop.Single];
+  loop: Loop = loopDefulat;
   lrc: any[] = [];
 
   @ViewChild('res', { static: false }) res: any;
@@ -28,12 +33,12 @@ export class PlayerComponent {
   blockckckc = false;
   list = ['btn-order-list', 'btn-order-random', 'btn-order-single'];
   constructor(
-    private http: HttpClient,
+    private localStorageService: LocalStorageService,
     private audio: AudioService,
     private ele: ElementRef
   ) {
-    this.btnClass = { [this.list[this.index]]: true };
-
+    this.loop = this.localStorageService.data.loop;
+    this.audio.loop = this.loop;
     this.audio.index$.subscribe((index) => {
       this.isPalying = index >= 0;
     });
@@ -87,27 +92,15 @@ export class PlayerComponent {
   }
 
   switch() {
-    const next = ++this.index;
+    let index = this.loopList.findIndex((neee) => neee === this.loop);
+    index += 1;
 
-    if (next > this.list.length - 1) {
-      this.index = 0;
-    } else {
-      this.index = next;
+    if (index > this.loopList.length - 1) {
+      index = 0;
     }
-
-    switch (this.index) {
-      case 0:
-        this.audio.loop = Loop.List;
-        break;
-      case 1:
-        this.audio.loop = Loop.None;
-        break;
-      case 2:
-        this.audio.loop = Loop.Random;
-        break;
-    }
-
-    this.btnClass = { [this.list[this.index]]: true };
+    this.loop = this.loopList[index];
+    this.audio.loop = this.loop;
+    this.localStorageService.save({ loop: this.loop });
   }
 
   next(i: number) {

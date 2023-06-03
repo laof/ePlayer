@@ -1,7 +1,3 @@
-* {
-  user-select: none;
-}
-
 .dddd {
   display: flex;
   max-width: 1200px;
@@ -13,14 +9,9 @@
   cursor: pointer;
 }
 
-.list-num {
-  display: block;
-  flex: 0 0 40px;
-  overflow: hidden;
-  text-align: left;
-}
 .list {
   flex: 3;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -65,15 +56,18 @@
   li {
     width: 100%;
     height: 50px;
-    color: #af6f1e;
     font-size: 14px;
     border-bottom: 1px solid rgba(150, 150, 150, 0.1);
     cursor: default;
     align-items: center;
     display: flex;
 
-    &:hover .haha3333 {
-      color: white;
+    span {
+      display: block;
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &.ok .haha3333 {
@@ -86,14 +80,25 @@
   cursor: pointer;
 }
 
-.music-name {
-  position: relative;
+.list-num {
+  display: block;
+  flex: 0 0 40px;
+  font-size: 12px;
   overflow: hidden;
-  flex: 1;
+  color: #505050;
   text-align: left;
-  font-size: 14px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+}
+.music-name {
+  text-align: left;
+  flex: 1;
+  color: #ff7d21;
+  &:hover .haha3333 {
+    color: white;
+  }
+
+  &.ok .haha3333 {
+    color: white;
+  }
 }
 
 .btn-play {
@@ -102,11 +107,7 @@
 
 .music-time {
   position: relative;
-  display: block;
-  word-break: keep-all;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #636363;
   font-size: 12px;
   flex: 0 0 60px;
 }

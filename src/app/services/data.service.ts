@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export enum Loop {
-  Random = 'random',
-  None = 'none',
-  Single = 'single',
-  List = 'list',
+  Single = 'btn-order-single',
+  List = 'btn-order-list',
 }
+
+export const loopDefulat = Loop.List;
 
 export interface LRC {
   time: number;

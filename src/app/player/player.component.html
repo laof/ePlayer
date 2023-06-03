@@ -15,20 +15,10 @@
 </div>
 
 <div class="kongzhiqi">
-  <div class="vol">
-    <a
-      (click)="long()"
-      [ngClass]="{ 'btn-state-quiet': fde }"
-      class="player-btn btn-quiet"
-      title="静音"
-    ></a>
-    <input type="range" />
-  </div>
   <div class="con-btn">
     <span
       (click)="switch()"
-      class="player-btn btn-order"
-      [ngClass]="btnClass"
+      className="player-btn btn-order {{ loop }}"
       title="循环控制"
     ></span>
     <span class="player-btn btn-prev" (click)="next(0)" title="上一首"></span>

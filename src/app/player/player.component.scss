@@ -99,20 +99,6 @@ input {
   flex: 1;
 }
 
-/* 音量控制区域 */
-.vol {
-  width: 200px;
-  display: flex;
-  align-items: center;
-  display: none;
-}
-
-@media screen and (max-width: 960px) {
-  .vol {
-    display: none;
-  }
-}
-
 .kongzhiqi {
   width: 100%;
   display: flex;

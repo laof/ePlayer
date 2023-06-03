@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DataService, Loop, LRC, Music } from './data.service';
+import { DataService, Loop, loopDefulat, LRC, Music } from './data.service';
 import { add, subtract, multiply, divide } from 'mathjs';
 
 interface JGYBIProgress {
@@ -26,7 +26,7 @@ export class AudioService {
 
   private index = 0;
 
-  loop = Loop.None;
+  loop = loopDefulat;
 
   newName$ = new BehaviorSubject('');
   lrc$ = new BehaviorSubject(this.lrc);
@@ -68,7 +68,12 @@ export class AudioService {
     });
     this.audio.addEventListener('ended', () => {
       this.progress$.next(jGYBIProgress);
-      this.audio.play();
+
+      if (this.loop === Loop.List) {
+        this.next();
+      } else if (this.loop === Loop.Single) {
+        this.load();
+      }
     });
   }
 
@@ -92,17 +97,15 @@ export class AudioService {
   }
 
   pause() {
-    this.index$.next(-1);
     this.audio.pause();
   }
 
   prev() {
     this.index--;
     if (this.index < 0) {
-      this.index = 0;
-    } else {
-      this.index$.next(this.index);
+      this.index = this.list.length - 1;
     }
+    this.index$.next(this.index);
     this.load();
   }
 
@@ -110,10 +113,9 @@ export class AudioService {
     this.index++;
     const max = this.list.length - 1;
     if (this.index > max) {
-      this.index = max;
-    } else {
-      this.index$.next(this.index);
+      this.index = 0;
     }
+    this.index$.next(this.index);
     this.load();
   }
 

@@ -1,4 +1,7 @@
 <div class="mask"></div>
+<div class="time" (click)="testtime()" *ngIf="!haha">
+  <div [ngClass]="{ ok: timer }"></div>
+</div>
 <app-lrc [ngClass]="{ yaotan: haha }">
   <div class="niihao" *ngIf="haha">
     <app-list (logoclose)="close()"></app-list>
