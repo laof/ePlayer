@@ -45,29 +45,3 @@ app-player {
   z-index: 1;
   overflow: hidden;
 }
-
-.time {
-  position: fixed;
-  right: 0;
-  top: 0;
-  padding: 20px;
-  z-index: 2;
-  user-select: none;
-  cursor: pointer;
-
-  &:hover div {
-    transform: scale(1);
-  }
-
-  div {
-    width: 24px;
-    height: 24px;
-    background-image: url("../assets/images/player.png");
-    background-position: -30px -369px;
-    transform: scale(0.8);
-
-    &.ok {
-      background-position: 0 -94px;
-    }
-  }
-}

@@ -11,7 +11,7 @@
     (change)="fdasfa($event.target)"
     type="range"
   />
-  <label class="bbb">00:00</label>
+  <label (click)="testtime()" class="bbb" [ngClass]="{timer}">00:00</label>
 </div>
 
 <div class="kongzhiqi">

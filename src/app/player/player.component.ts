@@ -20,6 +20,7 @@ const local_torage = 'local_torage';
 export class PlayerComponent {
   @Output() showshow = new EventEmitter();
 
+  timer: any = 0;
   btnClass = {};
 
   loopList = [Loop.List, Loop.Single];
@@ -137,5 +138,26 @@ export class PlayerComponent {
   closeDialoggg() {
     this.dialoggg = !this.dialoggg;
     this.showshow.next(this.dialoggg);
+  }
+
+  testtime() {
+    clearTimeout(this.timer);
+    this.timer = 0;
+
+    const fdafa = prompt('设置倒计时(h)');
+
+    if (!fdafa) {
+      return;
+    }
+
+    const h = parseFloat(fdafa);
+
+    if (!h) {
+      return;
+    }
+
+    const hhh = 1000 * 60 * 60 * h;
+
+    this.timer = setTimeout(() => this.audio.pause(), hhh);
   }
 }

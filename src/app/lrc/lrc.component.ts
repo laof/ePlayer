@@ -56,16 +56,13 @@ export class LrcComponent implements OnInit, OnDestroy {
       selectHeight = parseFloat(getComputedStyle(aaa).height);
     }
 
-    const d = this.heightList.filter((o, i) => i < index);
-    const all = d.reduce((prev, curren) => add(prev, curren), 0);
+    const all = this.heightList[index];
     if (!all) return;
     const top = add(all, divide(selectHeight, 2));
     let total = subtract(divide(this.domHeight, 2), top);
-    // console.log(divide(selectHeight, 2));
-    // total = subtract(total, divide(selectHeight, 2));
+
     if (!this.show) {
       ulDom.style.marginTop = `${total}px`;
-      // ulDom.style.transform = `translateY(${total}px)`;
     }
   }
 
@@ -99,7 +96,7 @@ export class LrcComponent implements OnInit, OnDestroy {
       }
 
       const h = parseFloat(getComputedStyle(ele).height);
-      this.heightList[i] = h;
+      this.heightList[i] = i ? add(this.heightList[i - 1], h) : h;
       if (selected) {
         ele.classList.add('ok');
       }
@@ -133,8 +130,18 @@ export class LrcComponent implements OnInit, OnDestroy {
         this.list = res;
         const list = res.map((res, i: number) => {
           const aaaa = res.txt.split('<br>');
-          const zh = aaaa[1] ? `<div class="zh">${aaaa[1].trim()}</div>` : '';
-          const ok = aaaa[0].trim() + zh;
+          let firstLin = aaaa[0].trim();
+
+          let zh = '';
+
+          if (aaaa[1]) {
+            firstLin = firstLin.split(' ').join('</span><span class="word">');
+            firstLin = '<span class="word">' + firstLin + '</span>';
+            zh = `<div class="zh">${aaaa[1].trim()}</div>`;
+          }
+
+          const ok = firstLin + zh;
+
           return `<li id="${this.getId(i)}">${ok}</li>`;
         });
         this.ul.nativeElement.innerHTML = list.join('');
@@ -161,6 +168,8 @@ export class LrcComponent implements OnInit, OnDestroy {
   }
 
   touchstart(event: any) {
+    if (this.searfdasf(event)) return;
+
     const ee = event.touches[0];
 
     this.show = this.list.length > 3;
@@ -197,7 +206,25 @@ export class LrcComponent implements OnInit, OnDestroy {
     document.ontouchend = () => this.mouseup(true);
   }
 
+  openBaidu(word: string, touches: any) {
+    if (word.length < 3 || (touches && touches.length)) {
+      return;
+    }
+    window.open('https://fanyi.baidu.com/#en/zh/' + word);
+  }
+
+  searfdasf(event: any) {
+    const dom: HTMLDivElement = event.target;
+    const search = Array.from(dom.classList).includes('word');
+
+    if (search) this.openBaidu(dom.innerHTML, event.touches);
+
+    return search;
+  }
+
   onmousedown(event: any) {
+    if (this.searfdasf(event)) return;
+
     this.show = this.list.length > 3;
     const ulDom = this.ul.nativeElement;
     const ulHeight = parseInt(getComputedStyle(ulDom).height);

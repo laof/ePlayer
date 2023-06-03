@@ -1,6 +1,6 @@
 .panel {
-  height: calc(100% - 60px);
-  overflow-y: hidden;
+  height: calc(100% - 90px);
+  overflow: hidden;
   cursor: pointer;
   user-select: none;
   position: relative;
@@ -30,31 +30,37 @@
 }
 
 h1 {
-  font-size: 20px;
-  height: 30px;
+  font-size: 24px;
+  height: 60px;
   text-align: center;
   font-weight: normal;
   color: #fff;
-  width: 100%;
   overflow: hidden;
-  flex: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding: 0 20px;
+  display: block;
+  line-height: 60px;
 }
 
 :host ::ng-deep {
   li {
     color: #ff7d21;
     padding: 4px 6px;
+    font-size: 24px;
+
+    .zh {
+      font-size: 14px;
+      margin-top: 2px;
+    }
 
     &.ok {
-      font-size: 24px;
-      padding: 6px;
       color: white;
+    }
 
-      .zh {
-        font-size: 16px;
-      }
+    .word {
+      display: inline-block;
+      padding: 0 3px;
     }
   }
 
