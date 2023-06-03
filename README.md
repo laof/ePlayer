@@ -1,4 +1,4 @@
 # eplayer
 
 
-https://laof.github.io/ePlayer/dist/
+https://laof.github.io/ePlayer/dist
