@@ -1,24 +1,37 @@
-name: depoly
+name: Modao
 
-on: push
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
+
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: "contains(github.event.head_commit.message, 'cicd:')"
     steps:
     - uses: actions/checkout@v3
 
-    - name: set nodejs
-    - uses: actions/setup-node@v3
+    - name: Set up Go
+      uses: actions/setup-go@v3
       with:
-        node-version: 18
+        go-version: 1.18
 
-    - name: install
-    - run: npm i -f
+    - name: Build
+      run: go build -ldflags="-H windowsgui -w -s"  -o ./build/modao.exe
+      
+    - name: Create info json file
+      run: go run scripts/info.go
 
-    - name: build
-    - run: npm run build --prod
+    - name: Run UPX
+      uses: crazy-max/ghaction-upx@v1
+      with:
+        version: latest
+        files: |
+          ./build/modao.exe
+        args: -fq
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v3
@@ -44,9 +57,9 @@ jobs:
       with:
         token: ${{ secrets.CDAPK }}
         folder: build
-        repository-name: laof/a
-        target-folder: ./
+        repository-name: laof/blob
+        target-folder: files/modao
         branch: main
         clean: false
         force: false
-        commit-message: release by action
+        commit-message: cicd:deploy moado.exe by action
