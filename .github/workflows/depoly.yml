@@ -47,7 +47,7 @@ jobs:
         token: ${{ secrets.CDAPK }}
         folder: dist
         repository-name: laof/e
-        target-folder: dist
+        target-folder: ./
         branch: main
         clean: false
         force: false
