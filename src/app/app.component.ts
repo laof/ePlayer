@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AudioService } from './services/audio.service';
-import { PlayerComponent } from './player/player.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { PlayerComponent } from './player/player.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @ViewChild(PlayerComponent) playerComponent!: PlayerComponent;
+  @ViewChild(FooterComponent) footerComponent!: FooterComponent;
 
   title = 'music';
   constructor(private audio: AudioService) {}
@@ -21,6 +21,6 @@ export class AppComponent {
   }
 
   close() {
-    this.playerComponent.closeDialoggg();
+    this.footerComponent.closeDialoggg();
   }
 }

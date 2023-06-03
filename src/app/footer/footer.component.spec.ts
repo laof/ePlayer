@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayerComponent } from './player.component';
+import { PlayerComponent } from './footer.component';
 
 describe('PlayerComponent', () => {
   let component: PlayerComponent;

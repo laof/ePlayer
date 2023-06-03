@@ -5,19 +5,16 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AudioService } from '../services/audio.service';
 import { Loop, loopDefulat } from '../services/data.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
-const local_torage = 'local_torage';
-
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss'],
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
 })
-export class PlayerComponent {
+export class FooterComponent {
   @Output() showshow = new EventEmitter();
 
   timer: any = 0;
