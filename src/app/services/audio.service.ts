@@ -38,8 +38,7 @@ export class AudioService {
   constructor(private data: DataService) {
     this.init();
     this.data.list().subscribe((res: any) => {
-      const aa = [...res, ...res, ...res];
-      this.list = [...aa, ...aa];
+      this.list = res;
       this.list$.next(this.list);
       this.load(false);
     });
