@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: node:16.16.0
     if: "contains(github.event.head_commit.message, 'cicd:')"
     steps:
     - uses: actions/checkout@v3
@@ -27,11 +28,13 @@ jobs:
       with:
         name: site
         path: dist
+        retention-days: 1 # <= 这里可以设置保留天数
 
   deploy:
     concurrency: ci-${{ github.ref }}
     needs: [build] # The second job must depend on the first one to complete before running and uses ubuntu-latest instead of windows.
     runs-on: ubuntu-latest
+    container: node:16.16.0
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@v3
