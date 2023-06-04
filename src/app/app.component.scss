@@ -1,38 +1,7 @@
 :host {
-  display: block;
-  height: 100vh;
-}
-
-.mask {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  filter: alpha(opacity=30);
-  opacity: 0.3;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-app-lrc {
-  margin: auto;
-  height: 85%;
-  display: block;
-  position: relative;
-  padding-bottom: 20px;
-  &.yaotan ::ng-deep {
-    h1,
-    li {
-      color: transparent;
-    }
-  }
-}
-
-app-footer {
   display: flex;
-  height: 15%;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .niihao {
@@ -44,4 +13,21 @@ app-footer {
   padding: 30px;
   z-index: 1;
   overflow: hidden;
+}
+
+content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  &.yaotan ::ng-deep {
+    h1,
+    li {
+      color: transparent;
+    }
+  }
+}
+
+footer {
+  height: 15%;
+  min-height: 80px;
 }

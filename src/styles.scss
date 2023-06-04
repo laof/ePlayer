@@ -21,6 +21,20 @@ body {
   font-family: poppin, "PingFang SC", Tahoma, Arial, sans-serif;
 }
 
+.mask {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
 ::-webkit-scrollbar {
   width: 0;
 }
