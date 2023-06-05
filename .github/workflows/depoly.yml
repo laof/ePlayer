@@ -28,7 +28,7 @@ jobs:
       with:
         name: site
         path: dist
-        retention-days: 1 # <= 这里可以设置保留天数
+        retention-days: 1 # <= 这里可以设置保留天数1
 
   deploy:
     concurrency: ci-${{ github.ref }}
