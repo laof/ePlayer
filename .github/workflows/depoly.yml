@@ -54,8 +54,7 @@ jobs:
         token: ${{ secrets.CDAPK }}
         folder: dist
         repository-name: laof/e
-        target-folder: ./
         branch: main
-        clean: false
-        force: false
+        clean: true
+        force: true
         commit-message: release by action
