@@ -1,9 +1,10 @@
 <div class="fds-3">
   <label class="aaa">00:00</label>
   <input
-    (touchstart)="onmousedown($event)"
-    (touchmove)="onmousedown($event)"
-    (mousedown)="onmousedown($event)"
+    (touchstart)="down($event)"
+    (touchmove)="down($event)"
+    (mousedown)="down($event)"
+    (mouseup)="onmouseout($event)"
     (mouseout)="onmouseout($event)"
     (touchend)="onmouseout($event)"
     class="ddddd"
