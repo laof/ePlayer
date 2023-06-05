@@ -71,7 +71,7 @@ export class AudioService {
       if (this.loop === Loop.List) {
         this.next();
       } else if (this.loop === Loop.Single) {
-        this.load();
+        this.audio.play();
       }
     });
   }

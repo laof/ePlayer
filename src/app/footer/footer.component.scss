@@ -10,7 +10,7 @@
   background-image: url("../../assets/images/player.png");
   opacity: 0.8;
   filter: alpha(opacity=80);
-  transform: scale(0.7);
+  // transform: scale(0.7);
 }
 
 .player-btn:hover {
@@ -63,7 +63,7 @@
 .btn-play {
   width: 22px;
   height: 29px;
-  transform: scale(0.5);
+  // transform: scale(0.5);
 }
 .btn-next {
   background-position: 0 -52px;
@@ -71,13 +71,12 @@
   height: 20px;
 }
 .btn-order {
-  background-position: 0 -173px;
-  background-size: 450%;
-  width: 25px;
-  height: 25px;
+  background-position: 0 -203px;
+  width: 28px;
+  height: 26px;
 }
 .btn-order-single {
-  background-position: 0 -196px;
+  background-position: 0 -230px;
 }
 
 .btn-order-haha {
@@ -87,7 +86,7 @@
 }
 
 .btn-order-list {
-  background-position: 0 -173px;
+  background-position: 0 -203px;
 }
 .btn-order-random {
   background-position: 0 -62px;
@@ -142,5 +141,5 @@ input {
 /* 暂停状态 */
 .btn-state-paused {
   background-position: -30px 0;
-  transform: scale(0.6);
+  // transform: scale(0.6);
 }
