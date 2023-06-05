@@ -1,7 +1,10 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(
+    var(--vh, 1vh) * 100 - env(safe-area-inset-top) -
+      env(safe-area-inset-bottom)
+  );
 }
 
 .niihao {
@@ -29,5 +32,5 @@ content {
 
 footer {
   height: 15%;
-  min-height: 80px;
+  min-height: 98px;
 }

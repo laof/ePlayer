@@ -36,6 +36,6 @@ export class DataService {
       return this.http.get('https://laof.github.io/em/src/assets/list.json');
     }
 
-    return this.http.get('assets/list.json');
+    return this.http.get('https://laof.github.io/em/src/assets/list.json');
   }
 }

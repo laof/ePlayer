@@ -67,7 +67,11 @@ export class FooterComponent {
     });
   }
 
-  onmousedown(e: Event) {
+  onmousedown(e: Event | any) {
+    if (e.button == 2) {
+      return;
+    }
+
     this.blockckckc = true;
   }
   onmouseout(e: Event) {

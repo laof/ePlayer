@@ -7,6 +7,7 @@
     (mouseout)="onmouseout($event)"
     (touchend)="onmouseout($event)"
     class="ddddd"
+    [ngClass]="{ ok: blockckckc }"
     value="0"
     (change)="fdasfa($event.target)"
     type="range"
@@ -31,8 +32,10 @@
     <span class="player-btn btn-next" (click)="next(1)" title="下一首"></span>
     <span
       (click)="closeDialoggg()"
+      [ngClass]="{ close: dialoggg }"
       class="player-btn btn-order"
-      title="循环控制"
-    ></span>
+    >
+      <ng-container *ngIf="dialoggg">×</ng-container>
+    </span>
   </div>
 </div>

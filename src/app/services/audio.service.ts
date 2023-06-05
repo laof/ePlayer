@@ -68,6 +68,7 @@ export class AudioService {
     this.audio.addEventListener('ended', () => {
       this.progress$.next(jGYBIProgress);
 
+      this.timeline$.next(0);
       if (this.loop === Loop.List) {
         this.next();
       } else if (this.loop === Loop.Single) {

@@ -21,6 +21,7 @@ export class LrcComponent implements OnInit, OnDestroy {
   @ViewChild('line', { static: true }) line!: ElementRef;
 
   onlyOne$ = new Subject<string>(); // fuck..... compatibility
+  caclAll$ = new Subject<void>();
 
   name = '';
 
@@ -35,8 +36,7 @@ export class LrcComponent implements OnInit, OnDestroy {
   constructor(private audio: AudioService) {
     this.ob = new ResizeObserver(([entry]) => {
       if (!this.ul || !this.ul.nativeElement) return;
-      this.caclHeight();
-      this.updateItemheight();
+      this.caclAll$.next();
     });
 
     this.audio.newName$.subscribe((res) => {
@@ -47,6 +47,15 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.onlyOne$.pipe(debounceTime(200)).subscribe({
       next: (fanyi) => window.open(fanyi),
     });
+
+    this.caclAll$.pipe(debounceTime(300)).subscribe({
+      next: () => this.ddd3333(),
+    });
+  }
+
+  ddd3333() {
+    this.caclHeight();
+    this.updateItemheight();
   }
 
   getId(i: number) {
@@ -70,7 +79,7 @@ export class LrcComponent implements OnInit, OnDestroy {
       selectHeight = parseFloat(getComputedStyle(aaa).height);
     }
 
-    const all = this.heightList[index - 1];
+    const all = index ? this.heightList[index - 1] : this.heightList[0];
     if (!all) return;
     const top = add(all, divide(selectHeight, 2));
     let total = subtract(divide(this.domHeight, 2), top);
@@ -204,7 +213,7 @@ export class LrcComponent implements OnInit, OnDestroy {
       ulDom.style.marginTop = marginTop + 'px';
     };
     document.ontouchend = () => {
-      this.mouseup(marginTop, event.target);
+      this.mouseup123(marginTop, event);
     };
   }
 
@@ -224,6 +233,10 @@ export class LrcComponent implements OnInit, OnDestroy {
   // }
 
   onmousedown(event: any) {
+    if (event.button == 2) {
+      return;
+    }
+
     const ulDom = this.ul.nativeElement;
     const ulHeight = parseInt(getComputedStyle(ulDom).height);
     var disX = subtract(event.clientX, ulDom.offsetLeft);
@@ -255,11 +268,11 @@ export class LrcComponent implements OnInit, OnDestroy {
       ulDom.style.marginTop = marginTop + 'px';
     };
     document.onmouseup = () => {
-      this.mouseup(marginTop, event.target);
+      this.mouseup123(marginTop, event);
     };
   }
 
-  mouseup(b: number, dom: HTMLElement) {
+  private mouseup123(b: number, event: any) {
     // if (!this.show) return;
 
     this.show = false;
@@ -275,6 +288,7 @@ export class LrcComponent implements OnInit, OnDestroy {
     this.ul.nativeElement.classList.add('auto');
 
     if (!b) {
+      const dom = event.target;
       const search = Array.from(dom.classList).includes('word');
       if (dom.innerHTML.length > 3 && search) this.openBaidu(dom.innerHTML);
       return;
