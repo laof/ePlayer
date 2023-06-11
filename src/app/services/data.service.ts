@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { divide } from 'mathjs';
+import { map } from 'rxjs/operators';
 
 export enum Loop {
   Single = 'btn-order-single',
@@ -31,11 +33,18 @@ export class DataService {
   }
 
   list() {
-    // return this.http.get('https://laof.github.io/em/src/assets/list.json');
-    if (location.host == 'laof.github.io') {
-      return this.http.get('https://laof.github.io/em/src/assets/list.json');
-    }
+    let url = 'https://laof.github.io/em/data/list.json';
 
-    return this.http.get('https://laof.github.io/em/src/assets/list.json');
+    // location.host == 'laof.github.io'
+    // location.host == 'localhost'
+    return this.http.get(url).pipe(
+      map((o: any) => {
+        return o.files.map((obj: any) => {
+          const time = divide(obj.time as number, 60);
+          obj.time = time.toFixed(2).replace('.', ':');
+          return obj;
+        });
+      })
+    );
   }
 }
