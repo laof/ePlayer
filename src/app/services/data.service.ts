@@ -28,6 +28,14 @@ export interface Music {
 export class DataService {
   constructor(private http: HttpClient) {}
 
+  private data(arr: any[]) {
+    return arr.map((obj: any) => {
+      const time = divide(obj.time as number, 60);
+      obj.time = time.toFixed(2).replace('.', ':');
+      return obj;
+    });
+  }
+
   lrc(src: string) {
     return this.http.get(src, { responseType: 'text' });
   }
@@ -37,14 +45,6 @@ export class DataService {
 
     // location.host == 'laof.github.io'
     // location.host == 'localhost'
-    return this.http.get(url).pipe(
-      map((o: any) => {
-        return o.files.map((obj: any) => {
-          const time = divide(obj.time as number, 60);
-          obj.time = time.toFixed(2).replace('.', ':');
-          return obj;
-        });
-      })
-    );
+    return this.http.get(url).pipe(map((res: any) => this.data(res.files)));
   }
 }
