@@ -1,0 +1,107 @@
+{
+  "configVersion": 1,
+  "timestamp": 1768055468369,
+  "index": "/e/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/e/favicon.ico",
+        "/e/index.html",
+        "/e/main.eb87b833b6194fed.js",
+        "/e/manifest.webmanifest",
+        "/e/polyfills.9af8b39fdf33f3ab.js",
+        "/e/runtime.7ddf244aee91c801.js",
+        "/e/styles.220de82e14318b21.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/e/abc.7dcf23959f291225.png",
+        "/e/assets/abc.png",
+        "/e/assets/download.png",
+        "/e/assets/icons/icon-128x128.png",
+        "/e/assets/icons/icon-144x144.png",
+        "/e/assets/icons/icon-152x152.png",
+        "/e/assets/icons/icon-192x192.png",
+        "/e/assets/icons/icon-384x384.png",
+        "/e/assets/icons/icon-512x512.png",
+        "/e/assets/icons/icon-72x72.png",
+        "/e/assets/icons/icon-96x96.png",
+        "/e/assets/images/album_cover_player.png",
+        "/e/assets/images/history.png",
+        "/e/assets/images/icon_list_menu.png",
+        "/e/assets/images/player.png",
+        "/e/assets/images/player_cover.png",
+        "/e/assets/images/wave.gif",
+        "/e/assets/list.json",
+        "/e/assets/mp3/loulan.lrc",
+        "/e/assets/mp3/loulan.mp3",
+        "/e/player.ab8b72f675fc4ca2.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/e/abc.7dcf23959f291225.png": "4041964e2ba399bd31b1426e80ae8442fd147118",
+    "/e/assets/abc.png": "4041964e2ba399bd31b1426e80ae8442fd147118",
+    "/e/assets/download.png": "49bb52af9f2b8a48ed144066d9d9f11503cc0298",
+    "/e/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/e/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/e/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/e/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/e/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/e/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/e/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/e/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/e/assets/images/album_cover_player.png": "4041964e2ba399bd31b1426e80ae8442fd147118",
+    "/e/assets/images/history.png": "e78ae011e3b15c8c1c798fb50e74b85e64748ef3",
+    "/e/assets/images/icon_list_menu.png": "4eeccdbfd16f3a8cff3232a796228c2b6f93db6b",
+    "/e/assets/images/player.png": "8f7f2f80eb8dcdf05c90fcf1ec8b310cbb60e36f",
+    "/e/assets/images/player_cover.png": "49bb52af9f2b8a48ed144066d9d9f11503cc0298",
+    "/e/assets/images/wave.gif": "d10fbb0062b88f9b0d6c6365a87ca6854938c522",
+    "/e/assets/list.json": "211e649f222000e9ad1221e8260dc33a4322d141",
+    "/e/assets/mp3/loulan.lrc": "8fcf551e66daff19e1ef324fbe3c773dcb5d7ab8",
+    "/e/assets/mp3/loulan.mp3": "05654fc289a937274ddf2810c1cac8d46bc7ea6f",
+    "/e/favicon.ico": "04c278dba3e54393c4c980f7fd4dcd43796ef813",
+    "/e/index.html": "2d77ef65898a020fb7e8602c53e64d603da43651",
+    "/e/main.eb87b833b6194fed.js": "234b13b033673e7bd54f50581389539ad3262a8f",
+    "/e/manifest.webmanifest": "4d937944a6fb91c05a4b77ab82a87a010fba7591",
+    "/e/player.ab8b72f675fc4ca2.png": "8f7f2f80eb8dcdf05c90fcf1ec8b310cbb60e36f",
+    "/e/polyfills.9af8b39fdf33f3ab.js": "2d965683c51df462d8f3b67422791fe5d468cd3b",
+    "/e/runtime.7ddf244aee91c801.js": "bd55117c3779227733d32abc8b435967c675dd0c",
+    "/e/styles.220de82e14318b21.css": "0b0c8578740da03e4c41b1160e69180cc06674b3"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
